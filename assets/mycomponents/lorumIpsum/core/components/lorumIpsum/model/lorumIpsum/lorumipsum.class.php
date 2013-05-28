@@ -38,7 +38,9 @@ class lorumIpsum {
             'separator' => $separator,
         ), $sp);
 
-        //$this -> modx -> addPackage('LorumIpsum', $this -> config['modelPath']);
+        require_once('lorumIpsumWords.class.php');
+        $wordList = new lorumIpsumWords();
+        $this->words = $wordList->wordList;
     }
 
     function run(){
@@ -68,7 +70,8 @@ class lorumIpsum {
     }
 
     /***
-     * Fetches words from the database
+     * Fetches words from the database -- the original version of this package relied on the DB instead of
+     * a PHP class file
      */
     private function fetchWords($words = 0, $characters = 0){
 
@@ -101,7 +104,7 @@ class lorumIpsum {
      * Returns the number of words specified in this->config['numWords]'
      */
     function returnWords() {
-        $this->fetchWords($this->config['numWords']);
+//        $this->fetchWords($this->config['numWords']);
 
         $wordCount = 0;
 
@@ -114,9 +117,12 @@ class lorumIpsum {
                 $sentenceLength = $this->config['numWords'] - $wordCount;
             }
 
+            $word = $this->words[rand(0,count($this->words) -1)];
+
             //Capitalize the first word
-            $sentence .= strtoupper(substr($this->words[$wordCount], 0 ,1)
-                . substr($this->words[$wordCount], 1,strlen($this->words[$wordCount] - 1)));
+            $sentence .= strtoupper(substr($word, 0 ,2))
+                . substr($word, 2, strlen($word)) . ' ';
+
 
             //Calculate where we need to stop
             $stopPos = $wordCount + $sentenceLength;
@@ -125,7 +131,9 @@ class lorumIpsum {
 
             //Add the rest of the words
             while ($wordCount < $stopPos ) {
-                $sentence .= $this->words[$wordCount];
+                $word = $this->words[rand(0,count($this->words) -1)];
+
+                $sentence .= $word;
                 if ($wordCount != $stopPos - 1 ) {
                     $sentence .= ' ';
                 } else{
