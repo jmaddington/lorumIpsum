@@ -33,3 +33,32 @@
  *
  * @package lorumIpsum
  **/
+
+$sp = $scriptProperties;
+
+$class = 'lorumIpsum';
+$debug = $modx -> getOption('debug', $sp, false);
+$output = '';
+
+$corePath = $modx->getOption('core_path');
+$classPath = $modx->getOption("$class.core_path", $sp, "$corePath/components/$class/model/$class");
+
+//if (!$modx->loadClass($class, $classPath ,true,true)) {
+//    $modx->log(modX::LOG_LEVEL_ERROR,"[$class] Could not load $class class.");
+//
+//    if ($debug){
+//        $output .= print_r($sp);
+//        $output .= "Class path: $classPath";
+//    }
+//
+//    return $output;
+//}
+
+//$modelPath = $modx->getOption("$class.core_path",null,$modx->getOption('core_path')."components/$class/").'model/';
+//require_once $modelPath."$class/$class.class.php";
+
+require_once("$classPath/$class.class.php");
+
+$li = new LorumIpsum($modx, $sp);
+
+return $li->run();

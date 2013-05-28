@@ -47,15 +47,15 @@ $components = array(
      * their namespace to the lowercase package name of your extra */
 
     'newSystemSettings' => array(
-//        'lorumIpsum_system_setting1' => array( // key
-//            'key' => 'lorumIpsum_system_setting1',
-//            'name' => 'lorumIpsum Setting One',
-//            'description' => 'Description for setting one',
-//            'namespace' => 'lorumIpsum',
-//            'xtype' => 'textfield',
-//            'value' => 'value1',
-//            'area' => 'area1',
-//        ),
+        'lorumIpsum.corepath' => array( // key
+            'key' => 'lorumIpsum.core_path',
+            'name' => 'lorumIpsum core path',
+            'description' => '',
+            'namespace' => 'lorumIpsum',
+            'xtype' => 'textfield',
+            'value' => 'core/components/lorumIpsum',
+            //'area' => 'area1',
+        ),
 //        'lorumIpsum_system_setting2' => array( // key
 //            'key' => 'lorumIpsum_system_setting2',
 //            'name' => 'lorumIpsum Setting Two',
@@ -232,7 +232,7 @@ $components = array(
                 'static' => true,
             ),
         ),
-    
+
 //        'plugins' => array(
 //            'Plugin1' => array( /* minimal lorumIpsum */
 //                'category' => 'lorumIpsum',
@@ -268,7 +268,7 @@ $components = array(
 //                ),
 //            ),
 //        ),
-    
+
 //        'chunks' => array(
 //            'Chunk1' => array(
 //                'category' => 'lorumIpsum',
@@ -282,7 +282,7 @@ $components = array(
 //                ),
 //            ),
 //        ),
-    
+
 //        'templates' => array(
 //            'Template1' => array(
 //                'category' => 'lorumIpsum',
@@ -296,7 +296,7 @@ $components = array(
 //                ),
 //            ),
 //        ),
-    
+
 //        'templateVars' => array(
 //            'Tv1' => array(
 //                'category' => 'lorumIpsum',
@@ -327,7 +327,7 @@ $components = array(
 //                ),
 //            ),
 //        ),
-    
+
     ),
     /* (optional) will make all element objects static - 'static' field above will be ignored */
     'allStatic' => true,
@@ -472,6 +472,7 @@ $components = array(
      * Set to array() if there are no classes. */
     'classes' => array(
         'lorumIpsum' => 'lorumIpsum:lorumIpsum',
+        'lorumIpsumDb' => 'lorumIpsumDb:lorumIpsumDb',
     ),
 
     /* *******************************************
@@ -490,18 +491,18 @@ $components = array(
      * of desired resources
     */
     'process' => array(
-        'contexts',
+//        'contexts',
         'snippets',
-        'plugins',
-        'templateVars',
+//        'plugins',
+//        'templateVars',
         'templates',
         'chunks',
         'resources',
-        'propertySets',
+//        'propertySets',
         'systemSettings',
-        'contextSettings',
-        'systemEvents',
-        'menus'
+//        'contextSettings',
+//        'systemEvents',
+//        'menus'
     ),
     /*  Array  of resources to process. You can specify specific resources
         or parent (container) resources, or both.
