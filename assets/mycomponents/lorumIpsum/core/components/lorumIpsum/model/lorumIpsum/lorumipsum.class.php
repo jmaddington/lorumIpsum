@@ -26,7 +26,7 @@ class lorumIpsum {
         $numWords = $this -> modx -> getOption('words', $sp, 0);
         $chars = $this -> modx -> getOption('chars', $sp, 0);
         $paragraphs = $this -> modx -> getOption('paragraphs', $sp, 0);
-        $separator = $this -> modx -> getOption('seperator', $sp, '<br />');
+        $separator = $this -> modx -> getOption('separator', $sp, '<br />');
         $debug = $this -> modx -> getOption('debug', $sp, 0);
 
         $this -> config = array_merge(array(
@@ -36,6 +36,7 @@ class lorumIpsum {
             'numChars' => $chars,
             'numParagraphs' => $paragraphs,
             'separator' => $separator,
+            'debug' => $debug,
         ), $sp);
 
         require_once('lorumIpsumWords.class.php');
@@ -58,6 +59,7 @@ class lorumIpsum {
         }
 
         if ($this->config['numChars'] > 0) {
+            $this->returnWords();
             // I really don't know why *2 is needed, but otherwise only half the chars
             // are being returned
             if (mb_strlen($this->output) > $this->config['numChars']*2){
@@ -90,10 +92,6 @@ class lorumIpsum {
         while ($r = $results->fetch(PDO::FETCH_ASSOC)) {
             array_push($this->words, $r['word']);
             $this->totalChars += strlen($r['word']);
-//
-//            if ($characters != 0) {
-//                if ($this->totalChars > $characters){return true;}
-//            }
         }
 
         return true;
@@ -104,7 +102,6 @@ class lorumIpsum {
      * Returns the number of words specified in this->config['numWords]'
      */
     function returnWords() {
-//        $this->fetchWords($this->config['numWords']);
 
         $wordCount = 0;
 
@@ -149,17 +146,11 @@ class lorumIpsum {
 
     }
 
-    function returnCharacters($numChars) {
-        $this->fetchWords();
-
-    }
-
     /***
      * Returns the number of paragraphs specified in this->config['numParagraphs]'
      */
     function returnParagraphs(){
         for ($p = 0; $p < $this->config['numParagraphs']; $p++){
-            $this->words = array();
             $this->returnWords();
             $this->output .= $this->config['separator'];
         }

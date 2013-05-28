@@ -283,10 +283,12 @@ $components = array(
 //            ),
 //        ),
 
-//        'templates' => array(
-//            'Template1' => array(
-//                'category' => 'lorumIpsum',
-//            ),
+        'templates' => array(
+            'lorumIpsum' => array(
+                'category' => 'lorumIpsum',
+                'description' => 'Example usage of lorumIpsum snippet',
+                'static' => true,
+            ),
 //            'Template2' => array(
 //                'category' => 'lorumIpsum',
 //                'description' => 'Description for Template two',
@@ -295,7 +297,7 @@ $components = array(
 //                    'PropertySet2',
 //                ),
 //            ),
-//        ),
+        ),
 
 //        'templateVars' => array(
 //            'Tv1' => array(
@@ -339,12 +341,12 @@ $components = array(
      * ************************************************************** */
     /* Array of Resource pagetitles for your Extra; All other fields optional.
        You can set any resource field here */
-//    'resources' => array(
-//        'Resource1' => array( /* minimal lorumIpsum */
-//            'pagetitle' => 'Resource1',
-//            'alias' => 'resource1',
-//            'context_key' => 'lorumIpsum',
-//        ),
+    'resources' => array(
+        'lorumIpsum' => array( /* minimal lorumIpsum */
+            'pagetitle' => 'lorumIpsum Example',
+            'alias' => 'lorumIpsum',
+            'context_key' => 'web',
+        ),
 //        'Resource2' => array( /* lorumIpsum with other fields */
 //            'pagetitle' => 'Resource2',
 //            'alias' => 'resource2',
@@ -358,7 +360,7 @@ $components = array(
 //                'Tv2' => 'SomeOtherValue',
 //            ),
 //        )
-//    ),
+    ),
 
 
     /* Array of languages for which you will have language files,
@@ -472,7 +474,6 @@ $components = array(
      * Set to array() if there are no classes. */
     'classes' => array(
         'lorumIpsum' => 'lorumIpsum:lorumIpsum',
-        'lorumIpsumDb' => 'lorumIpsumDb:lorumIpsumDb',
     ),
 
     /* *******************************************
