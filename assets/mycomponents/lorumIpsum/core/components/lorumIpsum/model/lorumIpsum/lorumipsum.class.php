@@ -6,7 +6,7 @@ class lorumIpsum {
     public $properties = array();
     public $output = '';
     public $error = '';
-    public $debug = "\n";
+    public $debug = false;
 
     private $words = array();
     private $totalChars = 0;
@@ -23,33 +23,49 @@ class lorumIpsum {
         $this -> modx = &$modx;
 
         $basePath = $this -> modx -> getOption('lorumIpsum.core_path', $sp, $this -> modx -> getOption('core_path') . 'components/lorumIpsum/');
-        $words = $this -> modx -> getOption('words', $sp, 0);
+        $numWords = $this -> modx -> getOption('words', $sp, 0);
         $chars = $this -> modx -> getOption('chars', $sp, 0);
         $paragraphs = $this -> modx -> getOption('paragraphs', $sp, 0);
+        $separator = $this -> modx -> getOption('seperator', $sp, '<br />');
         $debug = $this -> modx -> getOption('debug', $sp, 0);
 
         $this -> config = array_merge(array(
             'basePath' => $basePath,
             'corePath' => $basePath,
-            'numWords' => $words,
+            'numWords' => $numWords,
             'numChars' => $chars,
             'numParagraphs' => $paragraphs,
+            'separator' => $separator,
         ), $sp);
 
         //$this -> modx -> addPackage('LorumIpsum', $this -> config['modelPath']);
     }
 
     function run(){
-        if ($this->words != 0) {
-            $this->words();
+
+        if ($this->config['numParagraphs'] != 0) {
+            $this->returnParagraphs();
+            return $this->output;
+        }
+
+        if ($this->config['numWords'] != 0) {
+            $this->returnWords();
             return $this->output;
         }
     }
 
-    private function getWords(){
+    /***
+     * Fetches words from the database
+     */
+    private function fetchWords($words = 0){
+
+        if ($words == 0) {
+            $words = $this->config['numWords'];
+        }
+
         $sql = "SELECT word from modx_lorum_ipsum
                 ORDER BY RAND()
-                LIMIT 0, " . $this->config['numWords'];
+                LIMIT 0, $words;";
 
         $i = -1;
 
@@ -62,8 +78,11 @@ class lorumIpsum {
 
     }
 
-    function words() {
-        $this->getWords($this->config['numWords']);
+    /***
+     * Returns the number of words specified in this->config['numWords]'
+     */
+    function returnWords() {
+        $this->fetchWords($this->config['numWords']);
 
         $wordCount = 0;
 
@@ -101,22 +120,20 @@ class lorumIpsum {
 
     }
 
-    function chars($numChars) {
-        $this->getWords($numChars);
+    function returnCharacters($numChars) {
+        $this->fetchWords();
 
     }
 
-    function paragraphs($numParagraphs, $wordsInParagraph){
-        $this->getWords($numParagraphs*$wordsInParagraph);
-
-        for ($p = 0; $p < $numParagraphs; $p++){
-            for ($w = 0; $w < $wordsInParagraph; true){
-                if ($wordsInParagraph - $w > $this->maxWordsInParagraph) {
-
-                }
-            }
+    /***
+     * Returns the number of paragraphs specified in this->config['numParagraphs]'
+     */
+    function returnParagraphs(){
+        for ($p = 0; $p < $this->config['numParagraphs']; $p++){
+            $this->words = array();
+            $this->returnWords();
+            $this->output .= $this->config['separator'];
         }
-
     }
 
 }
