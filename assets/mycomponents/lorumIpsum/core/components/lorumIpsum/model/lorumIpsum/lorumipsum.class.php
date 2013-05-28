@@ -45,19 +45,32 @@ class lorumIpsum {
 
         if ($this->config['numParagraphs'] != 0) {
             $this->returnParagraphs();
-            return $this->output;
         }
 
-        if ($this->config['numWords'] != 0) {
+        if ($this->config['numWords'] != 0 && $this->config['numParagraphs'] == 0) {
             $this->returnWords();
-            return $this->output;
         }
+
+        if ($this->config['debug']) {
+            $this->output .= print_r($this->config);
+        }
+
+        if ($this->config['numChars'] > 0) {
+            // I really don't know why *2 is needed, but otherwise only half the chars
+            // are being returned
+            if (mb_strlen($this->output) > $this->config['numChars']*2){
+                $this->output = substr($this->output,0,$this->config['numChars']*2);
+            }
+        }
+
+        return $this->output;
+
     }
 
     /***
      * Fetches words from the database
      */
-    private function fetchWords($words = 0){
+    private function fetchWords($words = 0, $characters = 0){
 
         if ($words == 0) {
             $words = $this->config['numWords'];
@@ -74,7 +87,13 @@ class lorumIpsum {
         while ($r = $results->fetch(PDO::FETCH_ASSOC)) {
             array_push($this->words, $r['word']);
             $this->totalChars += strlen($r['word']);
+//
+//            if ($characters != 0) {
+//                if ($this->totalChars > $characters){return true;}
+//            }
         }
+
+        return true;
 
     }
 
@@ -117,6 +136,8 @@ class lorumIpsum {
 
             $this->output .= $sentence;
         }
+
+        return true;
 
     }
 
