@@ -23,7 +23,7 @@ class lorumIpsum {
         $this -> modx = &$modx;
 
         $basePath = $this -> modx -> getOption('lorumIpsum.core_path', $sp, $this -> modx -> getOption('core_path') . 'components/lorumIpsum/');
-        $numWords = $this -> modx -> getOption('words', $sp, 0);
+        $numWords = $this -> modx -> getOption('words', $sp, 30);
         $chars = $this -> modx -> getOption('chars', $sp, 0);
         $paragraphs = $this -> modx -> getOption('paragraphs', $sp, 0);
         $separator = $this -> modx -> getOption('separator', $sp, '<br />');
