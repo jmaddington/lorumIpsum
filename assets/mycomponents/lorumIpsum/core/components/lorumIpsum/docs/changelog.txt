@@ -1,5 +1,9 @@
 Changelog for lorumIpsum
 
+lorumIpsum 1.0.5
+---------------------------------
+Snippet loads class via require_once :-\
+
 lorumIpsum 1.0.0
 ---------------------------------
 Initial Version

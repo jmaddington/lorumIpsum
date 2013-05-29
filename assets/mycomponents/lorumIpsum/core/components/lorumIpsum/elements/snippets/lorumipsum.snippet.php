@@ -41,29 +41,30 @@ $debug = $modx -> getOption('debug', $sp, false);
 $output = '';
 
 $corePath = $modx->getOption('core_path');
-$classPath = $modx->getOption("$class.core_path", $sp, "$corePath/components/$class/model/$class/");
+$classPath = "$corePath/components/$class/model/$class/";
 
 //So, I'd really rather use $modx->loadClass but I can't get that working on a production 2.2.4 so this will have to do for now
-require_once($classPath . $class . '.class.php');
+//The strtolower is needed because MC seems to lowercase the filename :-\
+require_once($classPath . strtolower($class) . '.class.php');
+//
+//if (!$modx->loadClass($class, $classPath ,true,true)) {
+//
+//    $modx->log(modX::LOG_LEVEL_ERROR,"[$class] Could not load $class class. Will try require");
+//
+//    require($classPath . strtolower($class) . '.class.php');
+//
+//    if (!class_exits($class)) {
+//        $modx->log(modX::LOG_LEVEL_ERROR,"[$class] Could not load $class class with require_once, exiting.");
+//        if ($debug){
+//            $output .= print_r($sp);
+//            $output .= "Class path: $classPath";
+//        }
+//
+//        return $output;
+//
+//    }
+//}
 
-if (!$modx->loadClass($class, $classPath ,true,true)) {
-
-    $modx->log(modX::LOG_LEVEL_ERROR,"[$class] Could not load $class class. Will try require");
-
-    require($classPath . $class . '.class.php');
-
-    if (!class_exits($class)) {
-        $modx->log(modX::LOG_LEVEL_ERROR,"[$class] Could not load $class class with require_once, exiting.");
-        if ($debug){
-            $output .= print_r($sp);
-            $output .= "Class path: $classPath";
-        }
-
-        return $output;
-
-    }
-}
-
-$li = new LorumIpsum($modx, $sp);
+$li = new lorumIpsum($modx, $sp);
 
 return $li->run();

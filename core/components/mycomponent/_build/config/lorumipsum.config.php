@@ -7,7 +7,7 @@ $components = array(
     'packageName' => 'lorumIpsum',  /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'Lorum Ipsum generator',
-    'version' => '1.0.2',
+    'version' => '1.0.5',
     'release' => 'beta1',
     'author' => 'JM Addington',
     'email' => 'jm@jmaddington.com',
@@ -284,11 +284,11 @@ $components = array(
 //        ),
 
         'templates' => array(
-            'lorumIpsum' => array(
-                'category' => 'lorumIpsum',
-                'description' => 'Example usage of lorumIpsum snippet',
-                'static' => true,
-            ),
+//            'lorumIpsum' => array(
+//                'category' => 'lorumIpsum',
+//                'description' => 'Example usage of lorumIpsum snippet',
+//                'static' => true,
+//            ),
 //            'Template2' => array(
 //                'category' => 'lorumIpsum',
 //                'description' => 'Description for Template two',
@@ -380,8 +380,8 @@ $components = array(
      * Set to hasAssets = false to skip.
      * Empty js and/or css files will be created.
      */
-    'hasAssets' => true,
-    'minifyJS' => true,
+    'hasAssets' => false,
+    'minifyJS' => false,
     /* minify any JS files */
     'assetsDirs' => array(
         'css' => false,

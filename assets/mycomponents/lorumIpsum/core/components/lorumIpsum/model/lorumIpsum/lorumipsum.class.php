@@ -39,7 +39,7 @@ class lorumIpsum {
             'debug' => $debug,
         ), $sp);
 
-        //require_once('lorumIpsumWords.class.php');
+        require_once('lorumIpsumWords.class.php');
 
         $wordList = new lorumIpsumWords();
         $this->words = $wordList->wordList;
