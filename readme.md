@@ -10,10 +10,12 @@ characters specified. All words are chosen by random.
 Call lorumIpsum with at least words set, and optionally paragraphs and characters.
 
 The following would output 10 words:
-[[lorumIpsum? &words=\`10\`]]
+
+`[[lorumIpsum? &words=\`10\`]]`
 
 The following would output 3 paragraphs of 15 words:
-[[lorumIpsum? &words=\`15\` &paragraphs=\`3\`]]
+
+`[[lorumIpsum? &words=\`15\` &paragraphs=\`3\`]]`
 
 ##Properties##
 
