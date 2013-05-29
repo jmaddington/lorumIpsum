@@ -7,20 +7,20 @@ $components = array(
     'packageName' => 'lorumIpsum',  /* No spaces, no dashes */
     'packageNameLower' => $packageNameLower,
     'packageDescription' => 'Lorum Ipsum generator',
-    'version' => '0.0.1',
+    'version' => '1.0.2',
     'release' => 'beta1',
     'author' => 'JM Addington',
     'email' => 'jm@jmaddington.com',
     'authorUrl' => 'http://www.jmaddington.com',
     'authorSiteName' => "JM Addington",
-    'packageDocumentationUrl' => 'N/A',
+    'packageDocumentationUrl' => 'https://github.com/jmaddington/lorumIpsum',
     'copyright' => '2013',
 
     /* no need to edit this except to change format */
     'createdon' => strftime('%m-%d-%Y'),
 
-//    'gitHubUsername' => 'jmaddington',
-//    'gitHubRepository' => 'lorumIpsum',
+    'gitHubUsername' => 'jmaddington',
+    'gitHubRepository' => 'lorumIpsum',
 
     /* two-letter code of your primary language */
     'primaryLanguage' => 'en',
@@ -500,7 +500,7 @@ $components = array(
         'chunks',
         'resources',
 //        'propertySets',
-        'systemSettings',
+//        'systemSettings',
 //        'contextSettings',
 //        'systemEvents',
 //        'menus'
@@ -514,7 +514,7 @@ $components = array(
     'getResourcesById' => false,
 
     'exportResources' => array(
-//        'Resource1',
+        'lorumIpsum Example'
 //        'Resource2',
     ),
     /* Array of resource parent IDs to get children of. */
