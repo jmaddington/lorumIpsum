@@ -17,6 +17,9 @@ The following would output 3 paragraphs of 15 words:
 
 [[lorumIpsum? &words=\`15\` &paragraphs=\`3\`]]
 
+##Download##
+Download the lastest version [here](https://github.com/jmaddington/lorumIpsum/blob/master/core/packages/lorumipsum-1.0.5-beta1.transport.zip)
+
 ##Properties##
 
 <table>
